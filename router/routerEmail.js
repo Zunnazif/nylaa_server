@@ -11,8 +11,8 @@ route.post("/SendToEmail", (req, res) => {
     port: 465,
     host: "smtp.gmail.com",
     auth: {
-      user: "zunna.digital47@gmail.com",
-      pass: "qjbo vdys vrfk vehp",
+      user: sendFrom,
+      pass: password,
     },
     secure: true, // upgrades later with STARTTLS -- change this based on the PORT
   });
@@ -34,13 +34,11 @@ route.post("/SendToEmail", (req, res) => {
     if (error) {
       return console.log(error);
     }
-    res
-      .status(200)
-      .send({
-        isSucceeded: true,
-        message: "Mail send",
-        response: info.envelope.to[0],
-      });
+    res.status(200).send({
+      isSucceeded: true,
+      message: "Mail send",
+      response: info.envelope.to[0],
+    });
   });
 });
 
